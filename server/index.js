@@ -2,6 +2,8 @@ import express from  "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRouter from "./routes/user.route.js"
+import entriesRouter from "./routes/entry.route.js"
+import budgetRouter from "./routes/budget.route.js"
 //import missionRouter from "./routes/mission.route.js"
 import cors from 'cors'
 import cookieParser from 'cookie-parser'; 
@@ -14,7 +16,7 @@ app.use(express.json());
 
 app.use(cors(
     {
-        origin : "http://localhost:5174",
+        origin : "http://localhost:5173",
         credentials : true,
     }  
 ));
@@ -37,6 +39,8 @@ app.listen(3000 , () =>{
 
 
 app.use('/api/user/auth' ,userRouter);
+app.use("/budget", budgetRouter);
+app.use("/entries", entriesRouter);
 
 
 
