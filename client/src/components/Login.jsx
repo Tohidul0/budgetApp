@@ -13,7 +13,7 @@ function LogIn(props) {
     const [error, setError] = useState(null)
     const navigate = useNavigate('');
     const [loading, setLoading] = useState(false);
-    //const { login } = useAuth();
+    const { login } = useAuth();
     //const apiUrl = process.env.REACT_APP_BACKEND_URL ;
     
     
@@ -56,7 +56,7 @@ function LogIn(props) {
             if(res.ok){
                 setLoading(false)
                 console.log(data);
-                //login(data);
+                login(data);
                 const loaddata = JSON.stringify(data);
                 localStorage.setItem('user', loaddata );
                 navigate('/home');

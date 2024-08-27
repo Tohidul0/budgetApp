@@ -34,7 +34,7 @@ export function EntriesProvider({ children }) {
     
   fetchData();
 
-    },[entries])
+    },[])
  
 
 
