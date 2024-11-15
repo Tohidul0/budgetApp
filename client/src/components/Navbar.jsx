@@ -1,6 +1,6 @@
 import { Button } from "flowbite-react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from '../context/Auth';
+import { useAuth } from "../context/Auth";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -10,9 +10,9 @@ export default function Navbar() {
     const yesDelete = window.confirm("Are you sure you want to sign out?");
     if (yesDelete) {
       try {
-        const res = await fetch('http://localhost:3000/api/user/auth/logout', { 
+        const res = await fetch("http://localhost:3000/api/user/auth/logout", {
           method: "POST",
-          headers: { 'Content-Type': 'application/json' },
+          headers: { "Content-Type": "application/json" },
         });
 
         if (!res.ok) {
@@ -21,7 +21,7 @@ export default function Navbar() {
         } else {
           logout();
           localStorage.clear();
-          navigate('/');
+          navigate("/");
         }
       } catch (error) {
         console.error("Network error:", error);
@@ -29,7 +29,7 @@ export default function Navbar() {
     }
   };
 
-  console.log(user, "User in Navbar"); 
+  console.log(user, "User in Navbar");
 
   return (
     <div className="bg-violet-700/30 py-2">

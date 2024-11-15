@@ -2,34 +2,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useEntries } from "../hooks/useEntries";
 
-
-
 export default function AddEntry() {
-// {
-  
-
-//   var raw = JSON.stringify({
-//       "title": "cliennnnnt",
-//       "type": "expense",
-//       "value": 600
-//    });
-
-//   var requestOptions = {
-//     method: 'POST',
-   
-//     body: raw,
-//     redirect: 'follow'
-//   };
-
-//   fetch("localhost:3000/entries", requestOptions)
-//     .then(response => response.text())
-//     .then(result => console.log(result))
-//     .catch(error => console.log('error', error));
-// }
-
- 
-
-
   const { entries, setEntries } = useEntries();
 
   const [type, setType] = useState("income");
@@ -45,8 +18,8 @@ export default function AddEntry() {
           onSubmit={(e) => {
             e.preventDefault();
             console.log("submitted");
-            console.log(type)
-             //setEntries([
+            console.log(type);
+            //setEntries([
             //   ...entries,
             //   {
             //     id: uuidv4(),
@@ -56,31 +29,26 @@ export default function AddEntry() {
             //     catTitle: catTitle,
             //   },
 
-            let m=parseFloat(value);
-            fetch('http://localhost:3000/entries', {
-            method: 'POST',
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-               "title": title,
-               "value": m,
-               "type": type,
-               "cattitle": cattitle
-           })
+            let m = parseFloat(value);
+            fetch("http://localhost:3000/entries", {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                title: title,
+                value: m,
+                type: type,
+                cattitle: cattitle,
+              }),
             })
-            .then(response => response.json())
-            .then(response => console.log(JSON.stringify(response)))
-              
-
-            
+              .then((response) => response.json())
+              .then((response) => console.log(JSON.stringify(response)));
           }}
         >
-
-
-           {/* catagory add------------------------------------------- */}
-           <select
+          {/* catagory add------------------------------------------- */}
+          <select
             id="type"
             name="type"
             className="block w-40 text-slate-100 shrink-0 rounded-md border-0 px-3 py-1.5 bg-amber-600 text-white-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -97,13 +65,6 @@ export default function AddEntry() {
             <option value="Entertrainment">Entertrainment</option>
           </select>
 
-
-
-
-
-
-
-
           <select
             id="type"
             name="type"
@@ -116,14 +77,6 @@ export default function AddEntry() {
             <option value="income">+</option>
             <option value="expense">-</option>
           </select>
-
-
-         
-
-
-
-
-
 
           <input
             type="text"

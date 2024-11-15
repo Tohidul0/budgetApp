@@ -7,28 +7,21 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import SignUp from "./components/Signup";
 import PrivateRoute from "./components/PrivateRoute";
-
-
-// Tohidul alam akil added--------------------------------
-// function updateData(id){
-//   console.log(id)
-//   document.getElementById(id).style.display="none";
-//  }
-//  ----------------------------------------------------
-
+import { AuthProvider } from "./context/Auth";
 
 function App() {
   return (
-    <EntriesProvider>
-      <Routes>
-        <Route path="/" element={<Login></Login>}></Route>
-        <Route path="/signUp" element={<SignUp></SignUp>}></Route>
-        <Route element={<PrivateRoute/>}>
+    <AuthProvider>
+      <EntriesProvider>
+        <Routes>
+          <Route path="/" element={<Login></Login>}></Route>
+          <Route path="/signUp" element={<SignUp></SignUp>}></Route>
+          <Route element={<PrivateRoute />}>
             <Route path="/home" element={<Home></Home>}></Route>
-        </Route>
-      </Routes>
-      
-    </EntriesProvider>
+          </Route>
+        </Routes>
+      </EntriesProvider>
+    </AuthProvider>
   );
 }
 

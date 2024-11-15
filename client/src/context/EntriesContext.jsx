@@ -1,44 +1,33 @@
 import { createContext, useEffect, useState } from "react";
 export const EntriesContext = createContext();
 
-
 export function EntriesProvider({ children }) {
-  
-  const [entries, setEntries] = useState([]) 
-    var value;
-    //const value = localStorage.getItem("entries");
-   // console.log(JSON.parse(value))
-    // fetch("http://localhost:3000/entries")
-    // .then (res => res.json())
-    // .then( data => console.log(data))
-    useEffect(()=>{
-      
-    async function fetchData(){
+  const [entries, setEntries] = useState([]);
+  var value;
+  //const value = localStorage.getItem("entries");
+  // console.log(JSON.parse(value))
+  // fetch("http://localhost:3000/entries")
+  // .then (res => res.json())
+  // .then( data => console.log(data))
+  useEffect(() => {
+    async function fetchData() {
       try {
-        const response = await fetch('http://localhost:3000/entries');
-         const data = await response.json();
-         if(!data) {
-          setEntries([])
-         }
-         else{
-          setEntries(data)
-          
-         }
+        const response = await fetch("http://localhost:3000/entries");
+        const data = await response.json();
+        if (!data) {
+          setEntries([]);
+        } else {
+          setEntries(data);
+        }
         // value = data.map( one => one);
-         
       } catch (error) {
-        console.error('Error:', error);
+        console.error("Error:", error);
       }
     }
-    
-    
-  fetchData();
 
-    },[])
- 
+    fetchData();
+  }, []);
 
-
-   
   const totalIncome = entries
     .filter((entry) => entry.type === "income")
     .reduce((prev, entry) => prev + entry.value, 0);
